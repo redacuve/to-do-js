@@ -25,3 +25,10 @@ export function renderProjects() {
   });
   setListener();
 }
+
+export function notification(text) {
+  const notContainer = document.getElementById('notification');
+  const note = document.getElementById('text-notification');
+  note.innerHTML = text;
+  notContainer.classList.remove('hide');
+}

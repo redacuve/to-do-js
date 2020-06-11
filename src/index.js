@@ -1,5 +1,5 @@
 import Project from './classes/project';
-import { addListenerToProjects } from './events_handler';
+import { addListenerToProjects, addListenerToNotification } from './events_handler';
 import { projects } from './variables';
 import { renderProjects } from './dom_handler';
 
@@ -9,3 +9,4 @@ projects.push(project1, project2);
 
 renderProjects();
 addListenerToProjects();
+addListenerToNotification();
