@@ -28,7 +28,7 @@ function dismissNotification() {
 export function addListenerToProjects() {
   document.getElementById('add-project').addEventListener('click', toggleSavePRoject);
   document.getElementById('button-save-project').addEventListener('click', saveProject);
-  // document.getElementById('button-cancel-project').addEventListener('click', toggleSavePRoject);
+  // document.getElementById('delete-form').addEventListener('click', toggleSavePRoject);
 }
 
 export function addListenerToNotification() {

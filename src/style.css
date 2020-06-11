@@ -36,8 +36,16 @@ button.is-dark {
   margin-top: 15px;
 }
 
+#project-save {
+  position: relative;
+  display: grid;
+  padding: 10px;
+  border-radius: 5%;
+  height: 220px;
+}
+
 .submit-btn {
-  margin: 5px auto;
+  margin-top: 10px;
 }
 
 /* right-panel */
