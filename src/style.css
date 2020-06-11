@@ -73,3 +73,6 @@ button.is-dark {
   border: 2px solid #111;
 }
 
+.hide {
+  display: none;
+}
