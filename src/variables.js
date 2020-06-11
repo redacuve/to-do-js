@@ -1,1 +1,3 @@
-export const projects = [];
+const projects = [];
+
+export default { projects };
