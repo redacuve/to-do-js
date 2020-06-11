@@ -17,7 +17,7 @@ function setListener() {
   });
 }
 
-export default function renderProjects() {
+export function renderProjects() {
   const listNode = document.getElementById('projects-list');
   listNode.innerHTML = '';
   projects.forEach((elem, index) => {

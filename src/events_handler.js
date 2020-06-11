@@ -1,6 +1,6 @@
 import { projects } from './variables';
 import Project from './classes/project';
-import renderProjects from './dom_handler';
+import { renderProjects } from './dom_handler';
 
 function toggleSavePRoject() {
   document.getElementById('project-save').classList.toggle('hide');
@@ -17,10 +17,8 @@ function saveProject() {
   renderProjects();
 }
 
-function addListenerToProjects() {
+export function addListenerToProjects() {
   document.getElementById('add-project').addEventListener('click', toggleSavePRoject);
   document.getElementById('button-save-project').addEventListener('click', saveProject);
   // document.getElementById('button-cancel-project').addEventListener('click', toggleSavePRoject);
 }
-
-export default { addListenerToProjects };
