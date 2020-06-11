@@ -36,6 +36,10 @@ button.is-dark {
   margin-top: 15px;
 }
 
+.submit-btn {
+  margin: 5px auto;
+}
+
 /* right-panel */
 
 .todo-container {

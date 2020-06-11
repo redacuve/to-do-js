@@ -1,6 +1,6 @@
 import Project from './classes/project';
 import addListenerToProjects from './events_handler';
-import projects from './variables';
+import { projects } from './variables';
 import renderProjects from './dom_handler';
 
 const project1 = new Project('Work', 'Work description');

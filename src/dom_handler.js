@@ -1,5 +1,5 @@
 // import { setListener } from './events_handler';
-import projects from './variables';
+import { projects } from './variables';
 
 function describeProject(e) {
   const index = e.target.id.substring(e.target.id.length - 1, e.target.id.length);
