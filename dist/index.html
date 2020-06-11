@@ -3,31 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <title>Todo List</title>
 </head>
 <body>
     <div class="container">
         <div class="projects-container">
-            <h3>Projects:</h3>
-            <p>add Project</p>
+            <h1>Projects</h1>
             <div class="single-projects-list">
                 <ul>
-                    <li>Name Project-1</li>
-                    <li>name Project-2</li>
+                    <li>Project 1</li>
+                    <li>Project 2</li>
                 </ul>
             </div>
-            <div class="single-project-container">
-                add a todo
-                <ul>
-                    <li>name of todo-1</li>
-                    <li>name of todo -2</li>
-                </ul>
-            </div>
+            <button class="button is-dark">Add</button>
         </div>
         <div class="todo-container">
-            * Title
-            * Description 
-            * Date and other fields
+            <h1>Task list</h1>
+            <ul class="task-list">
+                <li class="task-item"><a href="#" class="task-name">Task-1</a><span class="desc">Brief task desc</span></li>
+                <li class="task-item"><a href="#" class="task-name">Task-2</a><span class="desc">Brief task desc</span></li>
+                <li class="task-item"><a href="#" class="task-name">Task-3</a><span class="desc">Brief task desc</span></li>
+            </ul>
+            <div class="task-description">
+                <h3>Title</h3>
+                <p>Description</p>
+                <p><span>Date: 03/03/2021</span></p>
+                <strong>Priority: High</strong>
+            </div>
         </div>
 
     </div>    
