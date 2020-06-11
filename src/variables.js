@@ -1,1 +1,1 @@
-export let projects = []
+export const projects = [];
