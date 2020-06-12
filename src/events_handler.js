@@ -1,20 +1,18 @@
 import { projects } from './variables';
 import Project from './classes/project';
+import {createElement,  getElement, setInner, setClickListener } from './elementsHander';
 // import { notification } from './dom_handler';
 
 // PROJECT MANIPULATION HELPERS
 export function projectSelected(index) {
   const project = projects[index];
-  const hide = document.createElement('span');
-  const descriptionNode = document.getElementById('desc-project');
-  hide.innerHTML = index;
-  hide.classList.add('hide');
-
-  document.getElementById('title-project').innerHTML = project.name;
-  descriptionNode.innerHTML = project.description;
+  const hide = createElement('span',index,'hide');
+  const descriptionNode = getElement('desc-project');
+  setInner(getElement('title-project'),project.name)
+  setInner(descriptionNode, project.description);
   descriptionNode.appendChild(hide);
-  document.getElementById('delete-project').addEventListener('click', deleteProject);
-  document.getElementById('edit-project').addEventListener('click', editProject);
+  setClickListener(getElement('delete-project'),deleteProject);
+  setClickListener(getElement('edit-project'),editProject);
   isHighlited(index);
   if (document.getElementById('edit-project').disabled) disableEditP();
   if (document.getElementById('add-project').disabled) disableAddP();
