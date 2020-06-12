@@ -6,15 +6,36 @@ import Project from './classes/project';
 function saveProject() {
   const name = document.getElementById('new-project-name');
   const description = document.getElementById('new-project-description');
-
-  const project = new Project(name.value, description.value);
-  projects.push(project);
-  document.body.innerHtml += notification(`Project <strong>'${name.value}'</strong> was saved succefully`);
+  const titleNode = document.getElementById("title-project");
+  let indexProject = projects.length - 1
+  if (titleNode.lastChild.classList) {
+    indexProject = document.getElementById("desc-project").lastChild.innerHTML;
+    projects[indexProject].name = name.value;
+    projects[indexProject].description = description.value;
+    document.body.innerHtml += notification(`Project <strong>'${name.value}'</strong> was edited succefully`, 'is-warning');
+  }else {
+    const project = new Project(name.value, description.value);
+    projects.push(project);
+    document.body.innerHtml += notification(`Project <strong>'${name.value}'</strong> was saved succefully`);
+  }
   name.value = '';
   description.value = '';
   renderProjects();
   toggleForm();
-  projectSelected(projects.length - 1);
+  projectSelected(indexProject);
+}
+
+function editProject(){
+  const hide = document.createElement('span');
+  hide.classList.add('hide');
+  hide.innerHTML = "edit";
+  document.getElementById("title-project").appendChild(hide);
+  const indx = document.getElementById("desc-project").lastChild.innerHTML;
+  const project = projects[indx];
+  const form = document.getElementById('form-hide');
+  form.classList.remove("hide");
+  document.getElementById('new-project-name').value = project.name;
+  document.getElementById('new-project-description').value = project.description;
 }
 
 function deleteProject() {
@@ -43,6 +64,7 @@ export function projectSelected(index){
   descriptionNode.innerHTML = project.description;
   descriptionNode.appendChild(hide);
   document.getElementById('delete-project').addEventListener("click", deleteProject);
+  document.getElementById('edit-project').addEventListener("click", editProject);
   isHighlited(index);
 }
 
