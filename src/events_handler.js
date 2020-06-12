@@ -2,77 +2,25 @@ import { projects } from './variables';
 import Project from './classes/project';
 // import { notification } from './dom_handler';
 
-// PROJECT MANIPULATION SECTION 
-function saveProject() {
-  const name = document.getElementById('new-project-name');
-  const description = document.getElementById('new-project-description');
-  const titleNode = document.getElementById("title-project");
-  let indexProject = projects.length - 1
-  if (titleNode.lastChild.classList) {
-    indexProject = document.getElementById("desc-project").lastChild.innerHTML;
-    projects[indexProject].name = name.value;
-    projects[indexProject].description = description.value;
-    document.body.innerHtml += notification(`Project <strong>'${name.value}'</strong> was edited succefully`, 'is-warning');
-  }else {
-    const project = new Project(name.value, description.value);
-    projects.push(project);
-    document.body.innerHtml += notification(`Project <strong>'${name.value}'</strong> was saved succefully`);
-  }
-  name.value = '';
-  description.value = '';
-  renderProjects();
-  disableAddP();
-  document.getElementById('add-project').disabled = false;
-  projectSelected(indexProject);
-}
-
-function editProject(){
-  const hide = document.createElement('span');
-  hide.classList.add('hide');
-  hide.innerHTML = "edit";
-  document.getElementById("title-project").appendChild(hide);
-  const indx = document.getElementById("desc-project").lastChild.innerHTML;
-  const project = projects[indx];
-  const form = document.getElementById('form-hide');
-  form.classList.remove("hide");
-  document.getElementById('new-project-name').value = project.name;
-  document.getElementById('new-project-description').value = project.description;
-  disableAddP();
-}
-
-function deleteProject() {
-  const indx = document.getElementById("desc-project").lastChild.innerHTML;
-  const name = projects[indx].name
-  if (projects.length > 1) {
-    projects.splice(indx,1);
-  } else {
-    projects[0] = new Project('My First Project', 'This is your first project, you can edit it! or add a to-do');
-  }
-  document.body.innerHtml += notification(`Project <strong>'${name}'</deleted> was deleted succefully`, 'is-danger');
-  renderProjects();
-  projectSelected(0);
-}
-// PROJECT MANIPULATION SECTION 
-
 // PROJECT MANIPULATION HELPERS
-export function projectSelected(index){
-  const project = projects[index]
+export function projectSelected(index) {
+  const project = projects[index];
   const hide = document.createElement('span');
-  let descriptionNode = document.getElementById('desc-project');
+  const descriptionNode = document.getElementById('desc-project');
   hide.innerHTML = index;
-  hide.classList.add("hide");
-  
+  hide.classList.add('hide');
+
   document.getElementById('title-project').innerHTML = project.name;
   descriptionNode.innerHTML = project.description;
   descriptionNode.appendChild(hide);
-  document.getElementById('delete-project').addEventListener("click", deleteProject);
-  document.getElementById('edit-project').addEventListener("click", editProject);
+  document.getElementById('delete-project').addEventListener('click', deleteProject);
+  document.getElementById('edit-project').addEventListener('click', editProject);
   isHighlited(index);
   if (document.getElementById('edit-project').disabled) disableEditP();
   if (document.getElementById('add-project').disabled) disableAddP();
 }
 
-export function firstProjectSelected(){
+export function firstProjectSelected() {
   projectSelected(0);
 }
 
@@ -83,13 +31,6 @@ function describeProject(e) {
 // PROJECT MANIPULATION HELPERS
 
 // DOM MANIPULATION
-function toggleForm() {
-  document.getElementById('form-hide').classList.toggle('hide');
-  document.getElementById('new-project-name').value = '';
-  document.getElementById('new-project-description').value = '';
-  disableEditP();
-}
-
 function disableAddP() {
   const disable = document.getElementById('add-project').disabled;
   document.getElementById('add-project').disabled = !disable;
@@ -98,6 +39,13 @@ function disableAddP() {
 function disableEditP() {
   const disable = document.getElementById('edit-project').disabled;
   document.getElementById('edit-project').disabled = !disable;
+}
+
+function toggleForm() {
+  document.getElementById('form-hide').classList.toggle('hide');
+  document.getElementById('new-project-name').value = '';
+  document.getElementById('new-project-description').value = '';
+  disableEditP();
 }
 
 function dismissNotification() {
@@ -113,7 +61,7 @@ function setListener() {
   });
 }
 
-export function notification(text, nClass = "is-success") {
+export function notification(text, nClass = 'is-success') {
   const notContainer = document.getElementById('notification');
   notContainer.classList.value = `notification ${nClass}`;
   const note = document.getElementById('text-notification');
@@ -148,3 +96,55 @@ function isHighlited(i) {
   row.classList.add('has-background-grey-light');
 }
 // DOM MANIPULATION
+
+// PROJECT MANIPULATION SECTION
+function saveProject() {
+  const name = document.getElementById('new-project-name');
+  const description = document.getElementById('new-project-description');
+  const titleNode = document.getElementById('title-project');
+  let indexProject = projects.length - 1;
+  if (titleNode.lastChild.classList) {
+    indexProject = document.getElementById('desc-project').lastChild.innerHTML;
+    projects[indexProject].name = name.value;
+    projects[indexProject].description = description.value;
+    document.body.innerHtml += notification(`Project <strong>'${name.value}'</strong> was edited succefully`, 'is-warning');
+  } else {
+    const project = new Project(name.value, description.value);
+    projects.push(project);
+    document.body.innerHtml += notification(`Project <strong>'${name.value}'</strong> was saved succefully`);
+  }
+  name.value = '';
+  description.value = '';
+  renderProjects();
+  disableAddP();
+  document.getElementById('add-project').disabled = false;
+  projectSelected(indexProject);
+}
+
+function editProject() {
+  const hide = document.createElement('span');
+  hide.classList.add('hide');
+  hide.innerHTML = 'edit';
+  document.getElementById('title-project').appendChild(hide);
+  const indx = document.getElementById('desc-project').lastChild.innerHTML;
+  const project = projects[indx];
+  const form = document.getElementById('form-hide');
+  form.classList.remove('hide');
+  document.getElementById('new-project-name').value = project.name;
+  document.getElementById('new-project-description').value = project.description;
+  disableAddP();
+}
+
+function deleteProject() {
+  const indx = document.getElementById('desc-project').lastChild.innerHTML;
+  const { name } = projects[indx];
+  if (projects.length > 1) {
+    projects.splice(indx, 1);
+  } else {
+    projects[0] = new Project('My First Project', 'This is your first project, you can edit it! or add a to-do');
+  }
+  document.body.innerHtml += notification(`Project <strong>'${name}'</deleted> was deleted succefully`, 'is-danger');
+  renderProjects();
+  projectSelected(0);
+}
+// PROJECT MANIPULATION SECTION

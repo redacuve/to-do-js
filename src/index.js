@@ -1,5 +1,7 @@
 import Project from './classes/project';
-import { addListenerToProjects, addListenerToNotification, firstProjectSelected, renderProjects } from './events_handler';
+import {
+  addListenerToProjects, addListenerToNotification, firstProjectSelected, renderProjects,
+} from './events_handler';
 import { projects } from './variables';
 // import {   } from './dom_handler';
 
