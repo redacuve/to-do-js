@@ -22,6 +22,7 @@ function saveProject() {
   description.value = '';
   renderProjects();
   toggleForm();
+  document.getElementById('add-project').disabled = false;
   projectSelected(indexProject);
 }
 
