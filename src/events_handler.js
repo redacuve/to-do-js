@@ -21,7 +21,7 @@ function saveProject() {
   name.value = '';
   description.value = '';
   renderProjects();
-  toggleForm();
+  disableAddP();
   document.getElementById('add-project').disabled = false;
   projectSelected(indexProject);
 }
@@ -37,6 +37,7 @@ function editProject(){
   form.classList.remove("hide");
   document.getElementById('new-project-name').value = project.name;
   document.getElementById('new-project-description').value = project.description;
+  disableAddP();
 }
 
 function deleteProject() {
@@ -67,6 +68,8 @@ export function projectSelected(index){
   document.getElementById('delete-project').addEventListener("click", deleteProject);
   document.getElementById('edit-project').addEventListener("click", editProject);
   isHighlited(index);
+  if (document.getElementById('edit-project').disabled) disableEditP();
+  if (document.getElementById('add-project').disabled) disableAddP();
 }
 
 export function firstProjectSelected(){
@@ -81,11 +84,20 @@ function describeProject(e) {
 
 // DOM MANIPULATION
 function toggleForm() {
-  const disable = document.getElementById('add-project').disabled;
   document.getElementById('form-hide').classList.toggle('hide');
-  document.getElementById('add-project').disabled = !disable;
   document.getElementById('new-project-name').value = '';
   document.getElementById('new-project-description').value = '';
+  disableEditP();
+}
+
+function disableAddP() {
+  const disable = document.getElementById('add-project').disabled;
+  document.getElementById('add-project').disabled = !disable;
+}
+
+function disableEditP() {
+  const disable = document.getElementById('edit-project').disabled;
+  document.getElementById('edit-project').disabled = !disable;
 }
 
 function dismissNotification() {
