@@ -100,9 +100,12 @@ button.is-dark {
 #title-project {
   position: relative;
   display: inline-block;
+  justify-self: center;
+  width: 80%;
   background-color: lavender;
   text-align: center;
   margin-top: 85px;
+  border-radius: 15px;
 }
 
 #desc-project {
@@ -110,6 +113,7 @@ button.is-dark {
   display: inline-block;
   background-color: aliceblue;
   text-align: center;
+  border-radius: 15px;
 }
 
 .todo-list {
