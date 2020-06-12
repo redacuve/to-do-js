@@ -4,11 +4,13 @@ import Project from './classes/project';
 
 function deleteProject() {
   const indx = document.getElementById("desc-project").lastChild.innerHTML;
+  const name = projects[indx].name
   if (projects.length > 1) {
     projects.splice(indx,1);
   } else {
     projects[0] = new Project('My First Project', 'This is your first project, you can edit it! or add a to-do');
   }
+  document.body.innerHtml += notification(`Project ${name} was deleted succefully`, 'is-danger');
   renderProjects();
   projectSelected(0);
 }
@@ -64,8 +66,9 @@ export function renderProjects() {
   setListener();
 }
 
-export function notification(text) {
+export function notification(text, nClass = "is-success") {
   const notContainer = document.getElementById('notification');
+  notContainer.classList.value = `notification ${nClass}`;
   const note = document.getElementById('text-notification');
   note.innerHTML = text;
   notContainer.classList.remove('hide');

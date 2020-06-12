@@ -16,9 +16,9 @@ function saveProject() {
 
   const project = new Project(name.value, description.value);
   projects.push(project);
+  document.body.innerHtml += notification(`Project ${name.value} was saved succefully`);
   name.value = '';
   description.value = '';
-  document.body.innerHtml += notification(`the project ${name.value} was saved succefully`);
   renderProjects();
   toggleSavePRoject();
   projectSelected(projects.length - 1);
