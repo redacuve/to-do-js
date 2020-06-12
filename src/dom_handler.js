@@ -39,10 +39,7 @@ export function firstProjectSelected(){
 }
 
 function describeProject(e) {
-  const index = e.target.id.substring(
-    e.target.id.length - 1,
-    e.target.id.length,
-  );
+  const index = String(e.target.id).match(/(\d+)/)[0];
   projectSelected(index);
 }
 

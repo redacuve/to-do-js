@@ -4,7 +4,7 @@ import { renderProjects, notification } from './dom_handler';
 
 function toggleSavePRoject() {
   const disable = document.getElementById('add-project').disabled;
-  document.getElementById('project-save').classList.toggle('hide');
+  document.getElementById('form-hide').classList.toggle('hide');
   document.getElementById('add-project').disabled = !disable;
   document.getElementById('new-project-name').value = '';
   document.getElementById('new-project-description').value = '';
@@ -20,6 +20,7 @@ function saveProject() {
   description.value = '';
   document.body.innerHtml += notification(`the project ${name.value} was saved succefully`);
   renderProjects();
+  toggleSavePRoject();
 }
 
 function dismissNotification() {
