@@ -1,12 +1,16 @@
 // import { setListener } from './events_handler';
 import { projects } from './variables';
+import Project from './classes/project';
 
 function deleteProject() {
   const indx = document.getElementById("desc-project").lastChild.innerHTML;
   if (projects.length > 1) {
-    //project.
-    console.log(indx);
+    projects.splice(indx,1);
+  } else {
+    projects[0] = new Project('My First Project', 'This is your first project, you can edit it! or add a to-do');
   }
+  renderProjects();
+  projectSelected(0);
 }
 
 function isSelected(i) {
@@ -20,7 +24,7 @@ function isSelected(i) {
   row.classList.add('has-background-grey-light');
 }
 
-function projectSelected(index){
+export function projectSelected(index){
   const project = projects[index]
   const hide = document.createElement('span');
   let descriptionNode = document.getElementById('desc-project');

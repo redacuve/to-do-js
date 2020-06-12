@@ -1,6 +1,6 @@
 import { projects } from './variables';
 import Project from './classes/project';
-import { renderProjects, notification } from './dom_handler';
+import { renderProjects, notification, projectSelected } from './dom_handler';
 
 function toggleSavePRoject() {
   const disable = document.getElementById('add-project').disabled;
@@ -21,6 +21,7 @@ function saveProject() {
   document.body.innerHtml += notification(`the project ${name.value} was saved succefully`);
   renderProjects();
   toggleSavePRoject();
+  projectSelected(projects.length - 1);
 }
 
 function dismissNotification() {
