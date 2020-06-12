@@ -1,6 +1,14 @@
 // import { setListener } from './events_handler';
 import { projects } from './variables';
 
+function deleteProject() {
+  const indx = document.getElementById("desc-project").lastChild.innerHTML;
+  if (projects.length > 1) {
+    //project.
+    console.log(indx);
+  }
+}
+
 function isSelected(i) {
   projects.forEach((elem, index) => {
     document
@@ -12,15 +20,30 @@ function isSelected(i) {
   row.classList.add('has-background-grey-light');
 }
 
+function projectSelected(index){
+  const project = projects[index]
+  const hide = document.createElement('span');
+  let descriptionNode = document.getElementById('desc-project');
+  hide.innerHTML = index;
+  hide.classList.add("hide");
+  
+  document.getElementById('title-project').innerHTML = project.name;
+  descriptionNode.innerHTML = project.description;
+  descriptionNode.appendChild(hide);
+  document.getElementById('delete-project').addEventListener("click", deleteProject);
+  isSelected(index);
+}
+
+export function firstProjectSelected(){
+  projectSelected(0);
+}
+
 function describeProject(e) {
   const index = e.target.id.substring(
     e.target.id.length - 1,
     e.target.id.length,
   );
-  const project = projects[index];
-  document.getElementById('title-project').innerHTML = project.name;
-  document.getElementById('desc-project').innerHTML = project.description;
-  isSelected(index);
+  projectSelected(index);
 }
 
 function setListener() {
