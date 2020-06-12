@@ -1,6 +1,6 @@
 import { projects } from './variables';
 import Project from './classes/project';
-import {createElement,  getElement, setInner, setClickListener } from './elementsHander';
+import {createElement,  getElement, setInner, setClickListener, addToClass, setToClass, removeToClass, addToInner } from './elementsHander';
 // import { notification } from './dom_handler';
 
 // PROJECT MANIPULATION HELPERS
@@ -14,6 +14,7 @@ export function projectSelected(index) {
   setClickListener(getElement('delete-project'),deleteProject);
   setClickListener(getElement('edit-project'),editProject);
   isHighlited(index);
+  // CHECAR BUG
   if (document.getElementById('edit-project').disabled) disableEditP();
   if (document.getElementById('add-project').disabled) disableAddP();
 }
@@ -47,35 +48,31 @@ function toggleForm() {
 }
 
 function dismissNotification() {
-  const notContainer = document.getElementById('notification');
-  notContainer.classList.add('hide');
+  addToClass(getElement('notification'), 'hide');
 }
 
 function setListener() {
   projects.forEach((elem, index) => {
-    document
-      .getElementById(`project-n-${index}`)
-      .addEventListener('click', describeProject);
+    setClickListener(getElement(`project-n-${index}`), describeProject);
   });
 }
 
 export function notification(text, nClass = 'is-success') {
-  const notContainer = document.getElementById('notification');
-  notContainer.classList.value = `notification ${nClass}`;
-  const note = document.getElementById('text-notification');
-  note.innerHTML = text;
-  notContainer.classList.remove('hide');
+  const notContainer = getElement('text-notification');
+  setToClass(notContainer,`notification ${nClass}`);
+  setInner(notContainer, text);
+  removeToClass(notContainer,'hide');
 }
 
 export function renderProjects() {
-  const listNode = document.getElementById('projects-list');
-  listNode.innerHTML = '';
+  const listNode = getElement('projects-list');
+  setInner(listNode, '');
   projects.forEach((elem, index) => {
-    listNode.innerHTML += `<li id="project-n-${index}">${elem.name}</li>`;
+    addToInner(listNode,`<li id="project-n-${index}">${elem.name}</li>`);
   });
   setListener();
 }
-
+// check later
 export function addListenerToProjects() {
   document.getElementById('add-project').addEventListener('click', toggleForm);
   document.getElementById('button-save-project').addEventListener('click', saveProject);
@@ -85,13 +82,9 @@ export function addListenerToProjects() {
 
 function isHighlited(i) {
   projects.forEach((elem, index) => {
-    document
-      .getElementById(`project-n-${index}`)
-      .classList.remove('has-background-grey-light');
+    removeToClass(getElement(`project-n-${index}`),'has-background-grey-light');
   });
-
-  const row = document.getElementById(`project-n-${i}`);
-  row.classList.add('has-background-grey-light');
+  addToClass(getElement(`project-n-${i}`),'has-background-grey-light'); 
 }
 // DOM MANIPULATION
 

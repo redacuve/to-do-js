@@ -18,6 +18,18 @@ export function addToInner(elem, str){
     elem.innerHTML += str;
 }
 
+export function addToClass(elem, clss){
+    elem.classList.add(clss);
+}
+
+export function setToClass(elem, clss){
+    elem.classList.value = clss
+}
+
+export function removeToClass(elem, clss){
+    elem.classList.remove(clss);
+}
+
 export function setClickListener(elem, funct){
     elem.addEventListener("click",funct);
 }
