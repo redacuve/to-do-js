@@ -56,7 +56,7 @@ button.is-dark {
 
 #project-save {
   position: relative;
-  display: grid;
+  /*display: grid;*/
   padding: 10px;
   border-radius: 5%;
   height: 220px;

@@ -3,8 +3,9 @@ import Project from './classes/project';
 import { renderProjects, notification } from './dom_handler';
 
 function toggleSavePRoject() {
+  const disable = document.getElementById('add-project').disabled;
   document.getElementById('project-save').classList.toggle('hide');
-  document.getElementById('add-project').disabled = true;
+  document.getElementById('add-project').disabled = !disable;
   document.getElementById('new-project-name').value = '';
   document.getElementById('new-project-description').value = '';
 }
@@ -29,7 +30,7 @@ function dismissNotification() {
 export function addListenerToProjects() {
   document.getElementById('add-project').addEventListener('click', toggleSavePRoject);
   document.getElementById('button-save-project').addEventListener('click', saveProject);
-  // document.getElementById('delete-form').addEventListener('click', toggleSavePRoject);
+  document.getElementById('delete-form').addEventListener('click', toggleSavePRoject);
 }
 
 export function addListenerToNotification() {
