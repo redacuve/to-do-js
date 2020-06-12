@@ -1,55 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../src/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <title>Todo List</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../src/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+  <title>Todo List</title>
 </head>
+
 <body>
-    <div class="notification is-success hide" id="notification">
+  <div class="main is-widescreen is-fullhd">
+    <div class="projects-container">
+      <h1>To-Do-It</h1>
+      <section>
+        <div class="single-projects-list">
+          <ul id="projects-list">
+          </ul>
+        </div>
+        <button class="button is-dark is-fullwidth" id="add-project">Add</button>
+      </section>
+      <div class="hide has-background-white-ter has-text-grey-dark" id="project-save">
+        <div class="close-form">
+          <div>
+            <button class="delete"></button>
+          </div>
+        </div>
+        <label>Name</label>
+        <input id="new-project-name">
+        <label>Description</label>
+        <input id="new-project-description">
+        <div class="submit-btn">
+          <button class="button is-primary is-light is-small" id="button-save-project"><strong>Save</strong></button>
+        </div>
+      </div>
+    </div>
+    <div class="todo-container">
+      <div class="notification is-success hide" id="notification">
         <button class="delete"></button>
         <span id="text-notification"></span>
+      </div>
+      <h1 id="title-project"></h1>
+      <h2 id="desc-project"></h2>
+      <ul class="todo-list">
+        <li class="todo-item">
+          <a href="#" class="todo-name">Meeting on main room</a>
+          <span class="todo-desc">Bring the HD with project files</span>
+        </li>
+        <li class="todo-item">
+          <a href="#" class="todo-name">Coffee with stakeholders</a>
+          <span class="todo-desc">On starbucks (location on mail)</span>
+        </li>
+        <li class="todo-item">
+          <a href="#" class="todo-name">Team reunion</a>
+          <span class="todo-desc">Arrive 5 min after whole team</span>
+        </li>
+      </ul>
+      <div class="todo-description">
+        <h3>Title</h3>
+        <p>Description</p>
+        <p><span>Date: 03/03/2021</span></p>
+        <strong>Priority: High</strong>
+      </div>
     </div>
-    <div class="container">
-        <div class="projects-container">
-            <h1>Projects</h1>
-            <div class="single-projects-list">
-                <ul class="" id="projects-list">
-                </ul>
-            </div>
-            <button class="button is-dark" id="add-project">Add</button>
-            <div class="hide has-background-white-ter has-text-grey-dark" id="project-save">
-                <div>
-                    <button class="delete" id="delete-form"></button>
-                </div>
-                <label>Name</label>
-                <input id="new-project-name">
-                <label>Description</label>
-                <input id="new-project-description">
-                <div class="submit-btn">
-                  <button class="button is-primary is-small" id="button-save-project">Save</button>
-                </div>
-            </div>
-        </div>
-        <div class="todo-container">
-            <h1 id="title-project">To do list</h1>
-            <h2 id="desc-project"></h2>
-            <ul class="task-list">
-                <li class="task-item"><a href="#" class="task-name">to-do-item-1</a><span class="desc">Brief task desc</span></li>
-                <li class="task-item"><a href="#" class="task-name">to-do-item-2</a><span class="desc">Brief task desc</span></li>
-                <li class="task-item"><a href="#" class="task-name">to-do-item-3</a><span class="desc">Brief task desc</span></li>
-            </ul>
-            <div class="task-description">
-                <h3>Title</h3>
-                <p>Description</p>
-                <p><span>Date: 03/03/2021</span></p>
-                <strong>Priority: High</strong>
-            </div>
-        </div>
 
-    </div>
-    <script type="text/javascript" src="./main.js"></script>
+  </div>
+  <script type="text/javascript" src="./main.js"></script>
 </body>
+
 </html>

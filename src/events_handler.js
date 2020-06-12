@@ -4,8 +4,9 @@ import { renderProjects, notification } from './dom_handler';
 
 function toggleSavePRoject() {
   document.getElementById('project-save').classList.toggle('hide');
-  // document.getElementById('new-project-name').value = '';
-  // document.getElementById('new-project-description').value = '';
+  document.getElementById('add-project').disabled = true;
+  document.getElementById('new-project-name').value = '';
+  document.getElementById('new-project-description').value = '';
 }
 
 function saveProject() {

@@ -6,7 +6,7 @@ function describeProject(e) {
   const project = projects[index];
   document.getElementById('title-project').innerHTML = project.name;
   document.getElementById('desc-project').innerHTML = project.description;
-  // console.log(project);
+  isSelected(index);
 }
 
 function setListener() {
@@ -24,6 +24,17 @@ export function renderProjects() {
     listNode.innerHTML += `<li id="project-n-${index}">${elem.name}</li>`;
   });
   setListener();
+}
+
+function isSelected(i){
+  projects.forEach((elem, index) => {
+    document
+      .getElementById(`project-n-${index}`)
+      .classList.remove('has-background-grey-light');
+  });
+
+  const row = document.getElementById(`project-n-${i}`);
+  row.classList.add('has-background-grey-light');
 }
 
 export function notification(text) {
