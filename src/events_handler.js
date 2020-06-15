@@ -16,8 +16,6 @@ export function projectSelected(index) {
   setClickListener(getElement('delete-project'), deleteProject);
   setClickListener(getElement('edit-project'), editProject);
   isHighlited(index);
-  if (getElement('edit-project').disabled) disableEditP();
-  if (getElement('add-project').disabled) disableAddP();
 }
 
 export function firstProjectSelected() {
@@ -32,13 +30,13 @@ function describeProject(e) {
 
 // DOM MANIPULATION
 function disableAddP() {
-  const disable = document.getElementById('add-project').disabled;
-  document.getElementById('add-project').disabled = !disable;
-}
-
-function disableEditP() {
-  const disable = document.getElementById('edit-project').disabled;
-  document.getElementById('edit-project').disabled = !disable;
+  const addButton = getElement('add-project');
+  if (getElement('form-hide').classList.contains('hide')) {    
+    addButton.disabled = false;
+  }
+  else {
+    addButton.disabled = true;
+  }
 }
 
 function cleanProjectForm() {
@@ -49,7 +47,7 @@ function cleanProjectForm() {
 function toggleForm() {
   document.getElementById('form-hide').classList.toggle('hide');
   cleanProjectForm();
-  disableEditP();
+  disableAddP();
 }
 
 function dismissNotification() {
@@ -100,7 +98,7 @@ function saveProject() {
   let indexProject = projects.length - 1;
   if (name.value != '') {
     if (titleNode.lastChild.classList) {
-      indexProject = getElement('desc-project').lastChild.innerHtml;
+      indexProject = getElement('desc-project').lastChild.innerHTML;
       projects[indexProject].name = name.value;
       projects[indexProject].description = description.value;
       openNotification(`notificationProject <strong>'${name.value}'</strong> was edited succefully`, 'is-warning');
