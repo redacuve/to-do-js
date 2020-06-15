@@ -64,6 +64,7 @@ function openNotification(text, nClass = 'is-success') {
   const notification = getElement('notification');
   setToClass(notification, `notification ${nClass}`);
   setInner(getElement('text-notification'), text);
+  window.scrollTo(0,0);
 }
 
 export function renderProjects() {

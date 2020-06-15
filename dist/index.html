@@ -86,6 +86,31 @@
         <button class="button is-danger is-light is-rounded" id="delete-project">Delete Project</button>
         <button class="button is-warning is-light is-rounded" id="edit-project">Edit Project</button>
       </div>
+      <div class="" id="todo-form">
+        <div class="close-form">
+          <div>
+            <button class="delete" id="close-todo-form"></button>
+          </div>
+        </div>
+        <label for="new-todo-title">Title</label>
+        <input id="new-todo-title">
+        <label for="new-todo-description">Description</label>
+        <input id="new-todo-description">
+        <label for="new-todo-date">Date</label>
+        <input type="date" id="new-todo-date">
+        <label for="new-todo-priotity">Priority</label>
+        <div class="">
+          <input type="radio" name="todo-priority" id="priority-low" checked>
+          <label for="priority-low">Low</label>
+          <input type="radio" name="todo-priority" id="priority-medium">
+          <label for="priority-medium">Medium</label>
+          <input type="radio" name="todo-priority" id="priority-high">
+          <label for="priority-high">High</label>
+        </div>
+        <div class="submit-btn">
+          <button class="button is-primary is-light is-small" id="button-save-todo"><strong>Save</strong></button>
+        </div>
+      </div>
       <ul class="todo-list">
         <li class="todo-item">
           <a href="#" class="todo-name">Meeting on main room</a>
