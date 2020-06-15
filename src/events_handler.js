@@ -142,4 +142,13 @@ function deleteProject() {
   renderProjects();
   projectSelected(0);
 }
+
+function saveTodo(){
+  const tile = getElement('new-todo-title');
+  const description = getElement('new-todo-description');
+  const date = getElement('new-todo-date');
+  const priority = document.querySelector('input[name="todo-priority"]:checked').id.match(/^priority-/)
+  //const titleNode = getElement('title-project');
+}
+
 // PROJECT MANIPULATION SECTION
