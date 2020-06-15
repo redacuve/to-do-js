@@ -14,9 +14,8 @@ export function projectSelected(index) {
   setClickListener(getElement('delete-project'),deleteProject);
   setClickListener(getElement('edit-project'),editProject);
   isHighlited(index);
-  // CHECAR BUG
-  if (document.getElementById('edit-project').disabled) disableEditP();
-  if (document.getElementById('add-project').disabled) disableAddP();
+  if(getElement('edit-project').disabled) disableEditP();
+  if(getElement('add-project').disabled) disableAddP();
 }
 
 export function firstProjectSelected() {
@@ -95,21 +94,26 @@ function saveProject() {
   const titleNode = document.getElementById('title-project');
   let indexProject = projects.length - 1;
   if (titleNode.lastChild.classList) {
+    // SAVE EDITION
     indexProject = document.getElementById('desc-project').lastChild.innerHTML;
     projects[indexProject].name = name.value;
     projects[indexProject].description = description.value;
     document.body.innerHtml += notification(`Project <strong>'${name.value}'</strong> was edited succefully`, 'is-warning');
+    renderProjects();
+    projectSelected(indexProject);
   } else {
+    // NEW REGISTER
     const project = new Project(name.value, description.value);
     projects.push(project);
     document.body.innerHtml += notification(`Project <strong>'${name.value}'</strong> was saved succefully`);
+    renderProjects();
+    projectSelected(indexProject + 1);
   }
   name.value = '';
   description.value = '';
-  renderProjects();
   disableAddP();
   document.getElementById('add-project').disabled = false;
-  projectSelected(indexProject);
+  
 }
 
 function editProject() {

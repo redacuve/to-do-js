@@ -10,15 +10,53 @@
 </head>
 
 <body>
-  <div class="main is-widescreen is-fullhd">
-    <div class="projects-container">
-      <h1>To-Do-It</h1>
-      <section>
-        <div class="single-projects-list">
+  <div class="main is-widescren is-fullhd window">
+    <div class="projects-container header">
+      <div class="burger-container">
+        <div id="burger">
+          <div class="bar topBar"></div>
+          <div class="bar btmBar"></div>
+        </div>
+      </div>
+      <div class="logo-name">
+        <h1>To-Do-It</h1>
+      </div>
+      <ul class="menu">
+        <li class="menu-item">
+          <div class="single-projects-list">
+            <ul id="projects-list">
+            </ul>
+          </div>
+        </li>
+        <li class="menu-item">
+          <button class="button is-dark is-fullwidth" id="add-project">Add</button>
+        </li>
+        <li class="menu-item">
+          <div class="hide" id="form-hide">
+            <div class="has-background-white-ter has-text-grey-dark" id="project-save">
+              <div class="close-form">
+                <div>
+                  <button class="delete" id="delete-form"></button>
+                </div>
+              </div>
+              <label>Name</label>
+              <input id="new-project-name">
+              <label>Description</label>
+              <input id="new-project-description">
+              <div class="submit-btn">
+                <button class="button is-primary is-light is-small" id="button-save-project"><strong>Save</strong></button>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="menu-item"></li>
+      </ul>
+      <!-- <section>
+        <div class="single-projects-list">    --- MOVED
           <ul id="projects-list">
           </ul>
-        </div>
-        <button class="button is-dark is-fullwidth" id="add-project">Add</button>
+        </div> 
+        <button class="button is-dark is-fullwidth" id="add-project">Add</button> --- MOVED
       </section>
       <div class="hide" id="form-hide">
         <div class="has-background-white-ter has-text-grey-dark" id="project-save">
@@ -35,7 +73,7 @@
             <button class="button is-primary is-light is-small" id="button-save-project"><strong>Save</strong></button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="todo-container">
       <div class="notification is-success hide" id="notification">
@@ -44,8 +82,10 @@
       </div>
       <h1 class="title" id="title-project"></h1>
       <h2 class="subtitle" id="desc-project"></h2>
-      <button class="button is-danger" id="delete-project">Delete Project</button>
-      <button class="button is-warning" id="edit-project">Edit Project</button>
+      <div class="project-opt">
+        <button class="button is-danger is-light is-rounded" id="delete-project">Delete Project</button>
+        <button class="button is-warning is-light is-rounded" id="edit-project">Edit Project</button>
+      </div>
       <ul class="todo-list">
         <li class="todo-item">
           <a href="#" class="todo-name">Meeting on main room</a>
@@ -69,6 +109,7 @@
     </div>
 
   </div>
+  <script type="text/javascript" src="./index.js"></script>
   <script type="text/javascript" src="./main.js"></script>
 </body>
 
