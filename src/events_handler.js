@@ -204,11 +204,12 @@ function openTodo(e){
 
 function openTodoForm(){
   removeToClass(getElement('todo-form'), 'hide');
-  document.setf
+  addToClass(getElement('add-todo-button'), 'hide');
 }
 
 function closeTodoForm(){
   setToClass(getElement('todo-form'), 'hide');
+  removeToClass(getElement('add-todo-button'), 'hide');
 }
 
 function renderTodos(){
@@ -268,6 +269,7 @@ function saveTodo(){
 export function addListenerToToDos() {
   setClickListener(getElement('button-save-todo'), saveTodo);
   setClickListener(getElement('close-todo-form'), closeTodoForm);
+  setClickListener(getElement('add-todo-button'), openTodoForm);
 }
 
 function toggleFormToDo() {
