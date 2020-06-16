@@ -21,16 +21,6 @@ html, body {
   background-color: #eee;
 }
 
-.fa-trash-alt {
-  background-image: url('assets/trash-alt-regular.svg');
-  background-repeat: no-repeat;
-}
-
-.fa-edit {
-  background-image: url('assets/edit-regular.svg');
-  background-repeat: no-repeat;
-}
-
 /* left panel */
 
 .projects-container {
@@ -150,7 +140,7 @@ button.is-dark {
 .todo-item {
   position: relative;
   display: grid;
-  grid-template-columns: 45% 50% auto;
+  grid-template-columns: 40% 45% 5% 5% 5%;
   border: 1px solid #aaa;
   padding: 10px;
   padding-right: 0;
@@ -170,6 +160,24 @@ button.is-dark {
 .check-complete {
   position: relative;
   margin: auto 0;
+}
+
+.fa-trash-alt {
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  background-image: url('assets/trash-alt-regular.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.fa-edit {
+  width: 63%;
+  height: 100%;
+  margin: 0;
+  background-image: url('assets/edit-regular.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .todo-description {
