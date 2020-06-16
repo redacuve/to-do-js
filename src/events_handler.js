@@ -4,7 +4,6 @@ import {
   createElement, getElement, setInner, setClickListener, addToClass, setToClass, removeToClass, addToInner, setValue, appendChild,
 } from './elementsHander';
 import Todo from './classes/todo';
-// import { notification } from './dom_handler';
 
 // PROJECT MANIPULATION HELPERS
 export function projectSelected(index) {
@@ -28,7 +27,6 @@ function describeProject(e) {
   const index = String(e.target.id).match(/(\d+)/)[0];
   projectSelected(index);
   renderTodos();
-  // cleanTodoContainer();
 }
 // PROJECT MANIPULATION HELPERS
 
@@ -151,9 +149,6 @@ function deleteProject() {
 // PROJECT MANIPULATION SECTION
 
 
-
-
-
 // TODO MANIPULATION
 
 function cleanTodosForm(){
@@ -161,14 +156,6 @@ function cleanTodosForm(){
   setValue(getElement('new-todo-description'), "");
   setValue(getElement('new-todo-date'), "");
   getElement('priority-low').checked = true;
-}
-
-function cleanTodoContainer(){
-  setInner(getElement('single-todo-title'), 'To - Do');
-  setInner(getElement('single-todo-description'), 'A Description for the to - do');
-  setInner(getElement('single-todo-date'), 'Due Date');
-  setInner(getElement('single-todo-priority'), 'Priority');
-  setInner(getElement('single-todo-complete'), 'Completed')
 }
 
 function todoCompleted(e){
@@ -194,8 +181,6 @@ function todoEdit(e){
   const indx = getElement('desc-project').lastChild.innerHTML;
   const tdx = String(e.target.id).match(/(\d+)/)[0];
   const todo = projects[indx].todos[tdx];
-  // cleanTodosForm();
-  // openTodoForm();
   toggleFormToDo();
   const title = getElement('new-todo-title');
   const description = getElement('new-todo-description');
@@ -225,15 +210,6 @@ function renderTodos(){
   setInner(todoNode, '');
   const indx = getElement('desc-project').lastChild.innerHTML;
   const todos = projects[indx].todos;
-  // if (todos.length === 0){
-  //   addToInner(todoNode, `
-  //     <li class="todo-item">
-  //       <a href="#new-todo-title" class="todo-name" id="todo-new">Click Here To add a new Todo</a>
-  //       <span class="todo-desc">Here the todo description will be show</span>
-  //     </li>
-  //   `)
-  //   setClickListener(getElement('todo-new'), openTodoForm)
-  // } else {
     addToClass(getElement('single-todo-container'), 'hide');
     todos.forEach((todo, indx) => {
       addToInner(todoNode, `
@@ -248,8 +224,6 @@ function renderTodos(){
     });
     setListenerTodos(todos);
     editTodo[0] = false;
-  // }
-  // cleanTodoContainer();
 }
 
 function setListenerTodos(todos) {
@@ -282,7 +256,6 @@ function saveTodo(){
       projects[indx].todos.push(todo);
       openNotification(`To do  <strong>'${title.value}'</strong> was saved succefully`);
     }
-    // cleanTodosForm();
     toggleFormToDo();
     renderTodos();
   }else{
@@ -293,23 +266,8 @@ function saveTodo(){
 
 export function addListenerToToDos() {
   setClickListener(getElement('button-save-todo'), saveTodo);
-  // setClickListener(getElement('close-todo-form'), closeTodoForm);
   setClickListener(getElement('close-todo-form'), toggleFormToDo);
-  // setClickListener(getElement('add-todo'), openTodoForm);
   setClickListener(getElement('add-todo'), toggleFormToDo);
-}
-
-function openTodoForm(){
-  removeToClass(getElement('todo-form'), 'hide');
-  cleanTodosForm();
-  editTodo[0] = false;
-  addToClass(getElement('add-todo'), 'hide');
-}
-
-function closeTodoForm(){
-  setToClass(getElement('todo-form'), 'hide');
-
-  removeToClass(getElement('add-todo'), 'hide');
 }
 
 function disableAddT() {
