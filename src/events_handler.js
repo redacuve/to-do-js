@@ -21,6 +21,7 @@ export function projectSelected(index) {
 
 export function firstProjectSelected() {
   projectSelected(0);
+  renderTodos();
 }
 
 function describeProject(e) {
@@ -202,7 +203,12 @@ function openTodo(e){
 }
 
 function openTodoForm(){
-  console.log('open-todo-form')
+  removeToClass(getElement('todo-form'), 'hide');
+  document.setf
+}
+
+function closeTodoForm(){
+  setToClass(getElement('todo-form'), 'hide');
 }
 
 function renderTodos(){
@@ -213,7 +219,7 @@ function renderTodos(){
   if (todos.length === 0){
     addToInner(todoNode, `
       <li class="todo-item">
-        <a href="#" class="todo-name" id="todo-new">Click Here To add a new Todo</a>
+        <a href="#new-todo-title" class="todo-name" id="todo-new">Click Here To add a new Todo</a>
         <span class="todo-desc">Here the todo description will be show</span>
       </li>
     `)
@@ -261,6 +267,7 @@ function saveTodo(){
 
 export function addListenerToToDos() {
   setClickListener(getElement('button-save-todo'), saveTodo);
+  setClickListener(getElement('close-todo-form'), closeTodoForm);
 }
 
 function toggleFormToDo() {
