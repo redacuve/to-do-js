@@ -44,7 +44,7 @@ function cleanProjectForm() {
   setValue(getElement('new-project-description'), '');
 }
 
-function toggleForm() {
+function toggleFormProject() {
   document.getElementById('form-hide').classList.toggle('hide');
   cleanProjectForm();
   disableAddP();
@@ -77,9 +77,9 @@ export function renderProjects() {
 }
 
 export function addListenerToProjects() {
-  setClickListener(getElement('add-project'), toggleForm);
+  setClickListener(getElement('add-project'), toggleFormProject);
   setClickListener(getElement('button-save-project'), saveProject);
-  setClickListener(getElement('delete-form'), toggleForm);
+  setClickListener(getElement('delete-form'), toggleFormProject);
   document.querySelector('.notification .delete').addEventListener('click', dismissNotification);
 }
 
@@ -143,12 +143,32 @@ function deleteProject() {
   projectSelected(0);
 }
 
+// PROJECT MANIPULATION SECTION
+
+// TODO MANIPULATION
+
 function saveTodo(){
-  const tile = getElement('new-todo-title');
+  const title = getElement('new-todo-title');
   const description = getElement('new-todo-description');
   const date = getElement('new-todo-date');
-  const priority = document.querySelector('input[name="todo-priority"]:checked').id.match(/^priority-/)
+  //const radioGroup = getElement('new-todo-radio');
+  // const radios  = radioGroup.elements.todo_priority;
+  const priority = document.querySelector('input[name="todo-priority"]:checked').id.replace(/priority-/g, '');
+  console.log(`This will be saved: 
+               Title: ${title.value}
+               Description: ${description.value}
+               Date: ${date.value}
+               Priority: ${priority}`);
   //const titleNode = getElement('title-project');
 }
 
-// PROJECT MANIPULATION SECTION
+export function addListenerToToDos() {
+  setClickListener(getElement('button-save-todo'), saveTodo);
+}
+
+function toggleFormToDo() {
+  document.getElementById('form-hide').classList.toggle('hide');
+  cleanProjectForm();
+  disableAddP();
+}
+// TODO MANIPULATION

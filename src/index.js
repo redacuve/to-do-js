@@ -1,6 +1,6 @@
 import Project from './classes/project';
 import {
-  addListenerToProjects, addListenerToNotification, firstProjectSelected, renderProjects,
+  addListenerToProjects, addListenerToToDos, firstProjectSelected, renderProjects,
 } from './events_handler';
 import { projects } from './variables';
 // import {   } from './dom_handler';
@@ -11,4 +11,5 @@ projects.push(project1, project2);
 
 renderProjects();
 addListenerToProjects();
+addListenerToToDos();
 firstProjectSelected();
