@@ -1,4 +1,4 @@
-import { projects } from './variables';
+import { projects, editTodo } from './variables';
 import Project from './classes/project';
 import {
   createElement, getElement, setInner, setClickListener, addToClass, setToClass, removeToClass, addToInner, setValue, appendChild,
@@ -172,7 +172,10 @@ function cleanTodoContainer(){
 function todoCompleted(e){
   const indx = getElement('desc-project').lastChild.innerHTML;
   const tdx = String(e.target.id).match(/(\d+)/)[0];
-  projects[indx].todos[tdx].completed = true;
+  const todo = projects[indx].todos[tdx];
+  const completed = !todo.completed
+  todo.completed = completed
+  setInner(getElement('single-todo-complete'), todo.completed ? 'Completed' : 'Not Completed');
 }
 
 function todoDelete(e){
@@ -182,6 +185,23 @@ function todoDelete(e){
   projects[indx].todos.splice(tdx,1);
   openNotification(`Project <strong>'${title}'</strong> was deleted succefully`, 'is-danger');
   renderTodos();
+}
+
+function todoEdit(e){
+  const indx = getElement('desc-project').lastChild.innerHTML;
+  const tdx = String(e.target.id).match(/(\d+)/)[0];
+  const todo = projects[indx].todos[tdx];
+  cleanTodosForm();
+  openTodoForm();
+  const title = getElement('new-todo-title');
+  const description = getElement('new-todo-description');
+  const date = getElement('new-todo-date');
+  title.value = todo.title;
+  description.value = todo.description;
+  date.value = todo.date;
+  getElement(`priority-${todo.priority}`).checked = true;
+  editTodo[0] = true;
+  editTodo[1] = tdx;
 }
 
 function openTodo(e){
@@ -218,10 +238,12 @@ function renderTodos(){
         <span class="todo-desc">${todo.description}</span>
         <input type="checkbox" class="check-complete" id="todo-completed-${indx}" ${todo.completed ? "checked" : ""}>
         <i class="fa-trash-alt" id="todo-delete-${indx}">&nbsp;</i>
+        <i class="fa-edit" id="todo-edit-${indx}">&nbsp;</i>
       </li>
       `)
     });
     setListenerTodos(todos);
+    editTodo[0] = false;
   // }
   // cleanTodoContainer();
 }
@@ -231,6 +253,7 @@ function setListenerTodos(todos) {
     setClickListener(getElement(`todo-completed-${indx}`), todoCompleted);
     setClickListener(getElement(`todo-${indx}`),openTodo);
     setClickListener(getElement(`todo-delete-${indx}`),todoDelete);
+    setClickListener(getElement(`todo-edit-${indx}`), todoEdit);
   });
 }
 
@@ -240,10 +263,21 @@ function saveTodo(){
   const date = getElement('new-todo-date');
   const priority = document.querySelector('input[name="todo-priority"]:checked').id.replace(/priority-/g, '');
   if (title.value != ""){
-    let todo = new Todo(title.value, description.value, date.value, priority);
-    const indx = getElement('desc-project').lastChild.innerHTML;
-    projects[indx].todos.push(todo);
-    openNotification(`To do  <strong>'${title.value}'</strong> was saved succefully`);
+    if (editTodo[0]){
+      const indx = getElement('desc-project').lastChild.innerHTML;
+      const tdx = editTodo[1];
+      const todo = projects[indx].todos[tdx];
+      todo.title = title.value;
+      todo.description = description.value;
+      todo.date = date.value;
+      todo.priority = priority;
+      openNotification(`To do  <strong>'${title.value}'</strong> was edited succefully `,'is-warning');
+    }else {
+      let todo = new Todo(title.value, description.value, date.value, priority);
+      const indx = getElement('desc-project').lastChild.innerHTML;
+      projects[indx].todos.push(todo);
+      openNotification(`To do  <strong>'${title.value}'</strong> was saved succefully`);
+    }
     cleanTodosForm();
     renderTodos();
   }else{
@@ -260,7 +294,8 @@ export function addListenerToToDos() {
 
 function openTodoForm(){
   removeToClass(getElement('todo-form'), 'hide');
-
+  cleanTodosForm();
+  editTodo[0] = false;
   addToClass(getElement('add-todo'), 'hide');
 }
 

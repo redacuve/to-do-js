@@ -26,6 +26,11 @@ html, body {
   background-repeat: no-repeat;
 }
 
+.fa-edit {
+  background-image: url('assets/edit-regular.svg');
+  background-repeat: no-repeat;
+}
+
 /* left panel */
 
 .projects-container {
