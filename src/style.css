@@ -133,7 +133,7 @@ button.is-dark {
   display: grid;
   padding: 0 2rem;
   column-gap: 2rem;
-  grid-template-columns: 20% 20%;
+  grid-template-columns: 30% 30% 30%;
   justify-content: center;
 }
 

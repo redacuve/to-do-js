@@ -28,7 +28,7 @@ function describeProject(e) {
   const index = String(e.target.id).match(/(\d+)/)[0];
   projectSelected(index);
   renderTodos();
-  cleanTodoContainer();
+  // cleanTodoContainer();
 }
 // PROJECT MANIPULATION HELPERS
 
@@ -146,8 +146,11 @@ function deleteProject() {
   renderProjects();
   projectSelected(0);
 }
-
 // PROJECT MANIPULATION SECTION
+
+
+
+
 
 // TODO MANIPULATION
 
@@ -163,7 +166,7 @@ function cleanTodoContainer(){
   setInner(getElement('single-todo-description'), 'A Description for the to - do');
   setInner(getElement('single-todo-date'), 'Due Date');
   setInner(getElement('single-todo-priority'), 'Priority');
-  setInner(getElement('single-todo-complete'), 'Completition')
+  setInner(getElement('single-todo-complete'), 'Completed')
 }
 
 function todoCompleted(e){
@@ -185,31 +188,12 @@ function openTodo(e){
   const indx = getElement('desc-project').lastChild.innerHTML;
   const tdx = String(e.target.id).match(/(\d+)/)[0];
   const todo = projects[indx].todos[tdx];
+  removeToClass(getElement('single-todo-container'), 'hide');
   setInner(getElement('single-todo-title'), todo.title);
   setInner(getElement('single-todo-description'), todo.description);
   setInner(getElement('single-todo-date'), todo.date);
   setInner(getElement('single-todo-priority'), todo.priority);
   setInner(getElement('single-todo-complete'), todo.completed ? 'Completed' : 'Not Completed');
-
-  /*<div class="todo-description" id="single-todo-container">
-        <h3 id="single-todo-title">Title</h3>
-        <p id="single-todo-description">Description</p>
-        <p id="single-todo-date"><span>Date: 03/03/2021</span></p>
-        <p><strong id="single-todo-priority">Priority: High</strong></p>
-  </div>
-
-*/
-
-}
-
-function openTodoForm(){
-  removeToClass(getElement('todo-form'), 'hide');
-  addToClass(getElement('add-todo-button'), 'hide');
-}
-
-function closeTodoForm(){
-  setToClass(getElement('todo-form'), 'hide');
-  removeToClass(getElement('add-todo-button'), 'hide');
 }
 
 function renderTodos(){
@@ -217,15 +201,16 @@ function renderTodos(){
   setInner(todoNode, '');
   const indx = getElement('desc-project').lastChild.innerHTML;
   const todos = projects[indx].todos;
-  if (todos.length === 0){
-    addToInner(todoNode, `
-      <li class="todo-item">
-        <a href="#new-todo-title" class="todo-name" id="todo-new">Click Here To add a new Todo</a>
-        <span class="todo-desc">Here the todo description will be show</span>
-      </li>
-    `)
-    setClickListener(getElement('todo-new'), openTodoForm)
-  } else {
+  // if (todos.length === 0){
+  //   addToInner(todoNode, `
+  //     <li class="todo-item">
+  //       <a href="#new-todo-title" class="todo-name" id="todo-new">Click Here To add a new Todo</a>
+  //       <span class="todo-desc">Here the todo description will be show</span>
+  //     </li>
+  //   `)
+  //   setClickListener(getElement('todo-new'), openTodoForm)
+  // } else {
+    addToClass(getElement('single-todo-container'), 'hide');
     todos.forEach((todo, indx) => {
       addToInner(todoNode, `
       <li class="todo-item">
@@ -237,8 +222,8 @@ function renderTodos(){
       `)
     });
     setListenerTodos(todos);
-  }
-  cleanTodoContainer();
+  // }
+  // cleanTodoContainer();
 }
 
 function setListenerTodos(todos) {
@@ -269,12 +254,36 @@ function saveTodo(){
 export function addListenerToToDos() {
   setClickListener(getElement('button-save-todo'), saveTodo);
   setClickListener(getElement('close-todo-form'), closeTodoForm);
-  setClickListener(getElement('add-todo-button'), openTodoForm);
+  // setClickListener(getElement('close-todo-form'), toggleFormToDo);
+  setClickListener(getElement('add-todo'), openTodoForm);
+}
+
+function openTodoForm(){
+  removeToClass(getElement('todo-form'), 'hide');
+
+  addToClass(getElement('add-todo'), 'hide');
+}
+
+function closeTodoForm(){
+  setToClass(getElement('todo-form'), 'hide');
+
+  removeToClass(getElement('add-todo'), 'hide');
+}
+
+function disableAddT() {
+  const addButton = getElement('add-todo');
+  if (getElement('form-hide').classList.contains('hide')) {    
+    addButton.disabled = false;
+  }
+  else {
+    addButton.disabled = true;
+  }
 }
 
 function toggleFormToDo() {
-  document.getElementById('form-hide').classList.toggle('hide');
-  cleanProjectForm();
-  disableAddP();
+  document.getElementById('todo-form').classList.toggle('hide');
+  cleanTodosForm();
+  disableAddT();
 }
+
 // TODO MANIPULATION
