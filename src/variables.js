@@ -1,4 +1,4 @@
-export const projects = [];
+export let projects = [];
 
 export const editTodo = [false, null];
 

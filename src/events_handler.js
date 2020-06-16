@@ -121,6 +121,7 @@ function saveProject() {
   } else {
     openNotification('The name can\'t be blank', 'is-warning');
   }
+  localStorage.setItem('projects',JSON.stringify(projects));
 }
 
 function editProject() {
@@ -145,6 +146,7 @@ function deleteProject() {
   openNotification(`Project <strong>'${name}'</strong> was deleted succefully`, 'is-danger');
   renderProjects();
   projectSelected(0);
+  localStorage.setItem('projects',JSON.stringify(projects));
 }
 // PROJECT MANIPULATION SECTION
 
@@ -185,6 +187,7 @@ function todoDelete(e){
   projects[indx].todos.splice(tdx,1);
   openNotification(`Project <strong>'${title}'</strong> was deleted succefully`, 'is-danger');
   renderTodos();
+  localStorage.setItem('projects',JSON.stringify(projects));
 }
 
 function todoEdit(e){
@@ -285,6 +288,7 @@ function saveTodo(){
   }else{
     openNotification('To do <strong>title</strong> can\'t be blank', 'is-warning');
   }
+  localStorage.setItem('projects',JSON.stringify(projects));
 }
 
 export function addListenerToToDos() {

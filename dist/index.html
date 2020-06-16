@@ -69,21 +69,38 @@
             <button class="delete" id="close-todo-form"></button>
           </div>
         </div>
-        <label for="new-todo-title">Title</label>
-        <input id="new-todo-title">
-        <label for="new-todo-description">Description</label>
-        <input id="new-todo-description">
-        <label for="new-todo-date">Date</label>
-        <input type="date" id="new-todo-date">
-        <label for="new-todo-priotity">Priority</label>
-        <div class="" id="new-todo-radio">
-          <input type="radio" name="todo-priority" id="priority-low" checked>
-          <label for="priority-low">Low</label>
-          <input type="radio" name="todo-priority" id="priority-medium">
-          <label for="priority-medium">Medium</label>
-          <input type="radio" name="todo-priority" id="priority-high">
-          <label for="priority-high">High</label>
+        <div class="field">
+          <label class="label is-small" for="new-todo-title">Title</label>
+          <div class="control">
+            <input class="input is-small" id="new-todo-title">
+          </div>
         </div>
+
+        <div class="field">
+          <label class="label is-small" for="new-todo-description">Description</label>
+          <div class="controls">
+            <input class="input is-small" id="new-todo-description">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label is-small" for="new-todo-date">Date</label>
+          <div class="controls">
+            <input class="input is-small" type="date" id="new-todo-date">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label is-small" for="new-todo-priotity">Priority</label>
+          <div class="controls is-small" id="new-todo-radio">
+            <input class="is-small" type="radio" name="todo-priority" id="priority-low" checked>
+            <label class="is-small" for="priority-low">Low</label>
+            <input class="is-small" type="radio" name="todo-priority" id="priority-medium">
+            <label class="is-small" for="priority-medium">Medium</label>
+            <input class="is-small" type="radio" name="todo-priority" id="priority-high">
+            <label class="is-small" for="priority-high">High</label>
+          </div>
+        </div>
+
         <div class="submit-btn">
           <button class="button is-primary is-light is-small" id="button-save-todo"><strong>Save</strong></button>
         </div>
