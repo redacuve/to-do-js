@@ -21,6 +21,11 @@ html, body {
   background-color: #eee;
 }
 
+.fa-trash-alt {
+  background-image: url('assets/trash-alt-regular.svg');
+  background-repeat: no-repeat;
+}
+
 /* left panel */
 
 .projects-container {

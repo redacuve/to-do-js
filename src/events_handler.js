@@ -26,6 +26,8 @@ export function firstProjectSelected() {
 function describeProject(e) {
   const index = String(e.target.id).match(/(\d+)/)[0];
   projectSelected(index);
+  renderTodos();
+  cleanTodoContainer();
 }
 // PROJECT MANIPULATION HELPERS
 
@@ -155,20 +157,34 @@ function cleanTodosForm(){
   getElement('priority-low').checked = true;
 }
 
+function cleanTodoContainer(){
+  setInner(getElement('single-todo-title'), 'To - Do');
+  setInner(getElement('single-todo-description'), 'A Description for the to - do');
+  setInner(getElement('single-todo-date'), 'Due Date');
+  setInner(getElement('single-todo-priority'), 'Priority');
+  setInner(getElement('single-todo-complete'), 'Completition')
+}
+
 function todoCompleted(e){
-  console.log('todo completed')
+  const indx = getElement('desc-project').lastChild.innerHTML;
+  const tdx = String(e.target.id).match(/(\d+)/)[0];
+  projects[indx].todos[tdx].completed = true;
+}
+
+function todoDelete(e){
+  console.log('todo deleted')
   console.log(e);
 }
 
 function openTodo(e){
   const indx = getElement('desc-project').lastChild.innerHTML;
   const tdx = String(e.target.id).match(/(\d+)/)[0];
-  const todo = projects[indx][tdx];
-  console.log(projects[indx]);
-  // getElement('single-todo-title').innerHTML = todo.title;
-  // getElement('single-todo-description');
-  // getElement('single-todo-date');
-  // getElement('single-todo-priority');
+  const todo = projects[indx].todos[tdx];
+  setInner(getElement('single-todo-title'), todo.title);
+  setInner(getElement('single-todo-description'), todo.description);
+  setInner(getElement('single-todo-date'), todo.date);
+  setInner(getElement('single-todo-priority'), todo.priority);
+  setInner(getElement('single-todo-complete'), todo.completed ? 'Completed' : 'Not Completed');
 
   /*<div class="todo-description" id="single-todo-container">
         <h3 id="single-todo-title">Title</h3>
@@ -176,12 +192,8 @@ function openTodo(e){
         <p id="single-todo-date"><span>Date: 03/03/2021</span></p>
         <p><strong id="single-todo-priority">Priority: High</strong></p>
   </div>
-  const indx = getElement('desc-project').lastChild.innerHTML;
-  const tdx = 
-  const todo = projects[indx][tdx];
 
 */
-  // console.log(`click ${tdx}`)
 
 }
 
@@ -195,9 +207,11 @@ function renderTodos(){
     <li class="todo-item">
       <a class="todo-name" id="todo-${indx}">${todo.title}</a>
       <span class="todo-desc">${todo.description}</span>
-      <input type="checkbox" class="check-complete" id="todo-completed-${indx}">
+      <input type="checkbox" class="check-complete" id="todo-completed-${indx}" ${todo.completed ? "checked" : ""}>
+      <i class="fa-trash-alt" id="todo-delete-${indx}">&nbsp;</i>
     </li>
     `)
+    console.log(todo.completed)
   });
   setListenerTodos(todos);
 }
@@ -206,6 +220,7 @@ function setListenerTodos(todos) {
   todos.forEach((elem, indx) => {
     setClickListener(getElement(`todo-completed-${indx}`), todoCompleted);
     setClickListener(getElement(`todo-${indx}`),openTodo);
+    setClickListener(getElement(`todo-delete-${indx}`),todoDelete);
   });
 }
 
