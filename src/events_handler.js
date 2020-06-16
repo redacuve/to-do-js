@@ -191,8 +191,9 @@ function todoEdit(e){
   const indx = getElement('desc-project').lastChild.innerHTML;
   const tdx = String(e.target.id).match(/(\d+)/)[0];
   const todo = projects[indx].todos[tdx];
-  cleanTodosForm();
-  openTodoForm();
+  // cleanTodosForm();
+  // openTodoForm();
+  toggleFormToDo();
   const title = getElement('new-todo-title');
   const description = getElement('new-todo-description');
   const date = getElement('new-todo-date');
@@ -278,7 +279,8 @@ function saveTodo(){
       projects[indx].todos.push(todo);
       openNotification(`To do  <strong>'${title.value}'</strong> was saved succefully`);
     }
-    cleanTodosForm();
+    // cleanTodosForm();
+    toggleFormToDo();
     renderTodos();
   }else{
     openNotification('To do <strong>title</strong> can\'t be blank', 'is-warning');
@@ -287,9 +289,10 @@ function saveTodo(){
 
 export function addListenerToToDos() {
   setClickListener(getElement('button-save-todo'), saveTodo);
-  setClickListener(getElement('close-todo-form'), closeTodoForm);
-  // setClickListener(getElement('close-todo-form'), toggleFormToDo);
-  setClickListener(getElement('add-todo'), openTodoForm);
+  // setClickListener(getElement('close-todo-form'), closeTodoForm);
+  setClickListener(getElement('close-todo-form'), toggleFormToDo);
+  // setClickListener(getElement('add-todo'), openTodoForm);
+  setClickListener(getElement('add-todo'), toggleFormToDo);
 }
 
 function openTodoForm(){
@@ -307,7 +310,7 @@ function closeTodoForm(){
 
 function disableAddT() {
   const addButton = getElement('add-todo');
-  if (getElement('form-hide').classList.contains('hide')) {    
+  if (getElement('todo-form').classList.contains('hide')) {    
     addButton.disabled = false;
   }
   else {
@@ -318,6 +321,7 @@ function disableAddT() {
 function toggleFormToDo() {
   document.getElementById('todo-form').classList.toggle('hide');
   cleanTodosForm();
+  editTodo[0] = false;
   disableAddT();
 }
 
