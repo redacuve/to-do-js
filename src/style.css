@@ -140,9 +140,10 @@ button.is-dark {
 .todo-item {
   position: relative;
   display: grid;
-  grid-template-columns: 50% auto;
+  grid-template-columns: 45% 50% auto;
   border: 1px solid #aaa;
   padding: 10px;
+  padding-right: 0;
   background-color: antiquewhite;
 }
 
@@ -154,6 +155,11 @@ button.is-dark {
   font-size: 14px;
   text-align: right;
   margin-right: 20px;
+}
+
+.check-complete {
+  position: relative;
+  margin: auto 0;
 }
 
 .todo-description {
@@ -380,9 +386,9 @@ button.is-dark {
     position: relative;
     display: grid;
     grid-template-columns: 100%;
-    border: 1px solid #aaa;
+    /* border: 1px solid #aaa; */
     padding: 10px;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
     text-align: center;
   }
   

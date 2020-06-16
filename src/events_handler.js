@@ -55,7 +55,7 @@ function dismissNotification() {
   addToClass(getElement('notification'), 'hide');
 }
 
-function setListener() {
+function setListenerProject() {
   projects.forEach((elem, index) => {
     setClickListener(getElement(`project-n-${index}`), describeProject);
   });
@@ -74,7 +74,7 @@ export function renderProjects() {
   projects.forEach((elem, index) => {
     addToInner(listNode, `<li id="project-n-${index}">${elem.name}</li>`);
   });
-  setListener();
+  setListenerProject();
 }
 
 export function addListenerToProjects() {
@@ -161,6 +161,15 @@ function todoCompleted(e){
 }
 
 function openTodo(e){
+  const indx = getElement('desc-project').lastChild.innerHTML;
+  const tdx = String(e.target.id).match(/(\d+)/)[0];
+  const todo = projects[indx][tdx];
+  console.log(projects[indx]);
+  // getElement('single-todo-title').innerHTML = todo.title;
+  // getElement('single-todo-description');
+  // getElement('single-todo-date');
+  // getElement('single-todo-priority');
+
   /*<div class="todo-description" id="single-todo-container">
         <h3 id="single-todo-title">Title</h3>
         <p id="single-todo-description">Description</p>
@@ -172,7 +181,7 @@ function openTodo(e){
   const todo = projects[indx][tdx];
 
 */
-  console.log("click")
+  // console.log(`click ${tdx}`)
 
 }
 
@@ -180,17 +189,21 @@ function renderTodos(){
   const todoNode = getElement('list-of-todos');
   setInner(todoNode, '');
   const indx = getElement('desc-project').lastChild.innerHTML;
-  const todos = projects[indx].todos
+  const todos = projects[indx].todos;
   todos.forEach((todo, indx) => {
     addToInner(todoNode, `
-    <li class="todo-item" id="todo-${indx}">
-      <div>
-        <span class="todo-name">${todo.title}</span>
-        <span class="todo-desc">${todo.description}</span>
-        <input type="checkbox" id="todo-completed-${indx}">
-      </div>
+    <li class="todo-item">
+      <a class="todo-name" id="todo-${indx}">${todo.title}</a>
+      <span class="todo-desc">${todo.description}</span>
+      <input type="checkbox" class="check-complete" id="todo-completed-${indx}">
     </li>
     `)
+  });
+  setListenerTodos(todos);
+}
+
+function setListenerTodos(todos) {
+  todos.forEach((elem, indx) => {
     setClickListener(getElement(`todo-completed-${indx}`), todoCompleted);
     setClickListener(getElement(`todo-${indx}`),openTodo);
   });

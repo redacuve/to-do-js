@@ -1,3 +1,4 @@
+import './style.css';
 import Project from './classes/project';
 import {
   addListenerToProjects, addListenerToToDos, firstProjectSelected, renderProjects,
