@@ -172,8 +172,12 @@ function todoCompleted(e){
 }
 
 function todoDelete(e){
-  console.log('todo deleted')
-  console.log(e);
+  const indx = getElement('desc-project').lastChild.innerHTML;
+  const tdx = String(e.target.id).match(/(\d+)/)[0];
+  const title = projects[indx].todos[tdx].title;
+  projects[indx].todos.splice(tdx,1);
+  openNotification(`Project <strong>'${title}'</strong> was deleted succefully`, 'is-danger');
+  renderTodos();
 }
 
 function openTodo(e){
@@ -197,23 +201,37 @@ function openTodo(e){
 
 }
 
+function openTodoForm(){
+  console.log('open-todo-form')
+}
+
 function renderTodos(){
   const todoNode = getElement('list-of-todos');
   setInner(todoNode, '');
   const indx = getElement('desc-project').lastChild.innerHTML;
   const todos = projects[indx].todos;
-  todos.forEach((todo, indx) => {
+  if (todos.length === 0){
     addToInner(todoNode, `
-    <li class="todo-item">
-      <a class="todo-name" id="todo-${indx}">${todo.title}</a>
-      <span class="todo-desc">${todo.description}</span>
-      <input type="checkbox" class="check-complete" id="todo-completed-${indx}" ${todo.completed ? "checked" : ""}>
-      <i class="fa-trash-alt" id="todo-delete-${indx}">&nbsp;</i>
-    </li>
+      <li class="todo-item">
+        <a href="#" class="todo-name" id="todo-new">Click Here To add a new Todo</a>
+        <span class="todo-desc">Here the todo description will be show</span>
+      </li>
     `)
-    console.log(todo.completed)
-  });
-  setListenerTodos(todos);
+    setClickListener(getElement('todo-new'), openTodoForm)
+  } else {
+    todos.forEach((todo, indx) => {
+      addToInner(todoNode, `
+      <li class="todo-item">
+        <a class="todo-name" id="todo-${indx}">${todo.title}</a>
+        <span class="todo-desc">${todo.description}</span>
+        <input type="checkbox" class="check-complete" id="todo-completed-${indx}" ${todo.completed ? "checked" : ""}>
+        <i class="fa-trash-alt" id="todo-delete-${indx}">&nbsp;</i>
+      </li>
+      `)
+    });
+    setListenerTodos(todos);
+  }
+  cleanTodoContainer();
 }
 
 function setListenerTodos(todos) {
