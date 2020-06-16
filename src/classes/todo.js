@@ -7,7 +7,7 @@ class Todo {
     this.completed = completed;
   }
 
-  setCompleted(){
+  setCompleted() {
     this.completed = true;
   }
 }
