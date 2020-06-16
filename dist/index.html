@@ -77,18 +77,18 @@
         <input type="date" id="new-todo-date">
         <label for="new-todo-priotity">Priority</label>
         <div class="" id="new-todo-radio">
-          <input type="radio" name="todo-priority" id="priority-low">
+          <input type="radio" name="todo-priority" id="priority-low" checked>
           <label for="priority-low">Low</label>
           <input type="radio" name="todo-priority" id="priority-medium">
           <label for="priority-medium">Medium</label>
-          <input type="radio" name="todo-priority" id="priority-high" checked>
+          <input type="radio" name="todo-priority" id="priority-high">
           <label for="priority-high">High</label>
         </div>
         <div class="submit-btn">
           <button class="button is-primary is-light is-small" id="button-save-todo"><strong>Save</strong></button>
         </div>
       </div>
-      <ul class="todo-list">
+      <ul class="todo-list" id="list-of-todos">
         <li class="todo-item">
           <a href="#" class="todo-name">Meeting on main room</a>
           <span class="todo-desc">Bring the HD with project files</span>
@@ -102,11 +102,11 @@
           <span class="todo-desc">Arrive 5 min after whole team</span>
         </li>
       </ul>
-      <div class="todo-description">
-        <h3>Title</h3>
-        <p>Description</p>
-        <p><span>Date: 03/03/2021</span></p>
-        <strong>Priority: High</strong>
+      <div class="todo-description" id="single-todo-container">
+        <h3 id="single-todo-title">Title</h3>
+        <p id="single-todo-description">Description</p>
+        <p id="single-todo-date"><span>Date: 03/03/2021</span></p>
+        <p><strong id="single-todo-priority">Priority: High</strong></p>
       </div>
     </div>
 

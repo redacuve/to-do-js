@@ -3,6 +3,7 @@ import Project from './classes/project';
 import {
   createElement, getElement, setInner, setClickListener, addToClass, setToClass, removeToClass, addToInner, setValue, appendChild,
 } from './elementsHander';
+import Todo from './classes/todo';
 // import { notification } from './dom_handler';
 
 // PROJECT MANIPULATION HELPERS
@@ -147,19 +148,69 @@ function deleteProject() {
 
 // TODO MANIPULATION
 
+function cleanTodosForm(){
+  setValue(getElement('new-todo-title'), "");
+  setValue(getElement('new-todo-description'), "");
+  setValue(getElement('new-todo-date'), "");
+  getElement('priority-low').checked = true;
+}
+
+function todoCompleted(e){
+  console.log('todo completed')
+  console.log(e);
+}
+
+function openTodo(e){
+  /*<div class="todo-description" id="single-todo-container">
+        <h3 id="single-todo-title">Title</h3>
+        <p id="single-todo-description">Description</p>
+        <p id="single-todo-date"><span>Date: 03/03/2021</span></p>
+        <p><strong id="single-todo-priority">Priority: High</strong></p>
+  </div>
+  const indx = getElement('desc-project').lastChild.innerHTML;
+  const tdx = 
+  const todo = projects[indx][tdx];
+
+*/
+  console.log("click")
+
+}
+
+function renderTodos(){
+  const todoNode = getElement('list-of-todos');
+  setInner(todoNode, '');
+  const indx = getElement('desc-project').lastChild.innerHTML;
+  const todos = projects[indx].todos
+  todos.forEach((todo, indx) => {
+    addToInner(todoNode, `
+    <li class="todo-item" id="todo-${indx}">
+      <div>
+        <span class="todo-name">${todo.title}</span>
+        <span class="todo-desc">${todo.description}</span>
+        <input type="checkbox" id="todo-completed-${indx}">
+      </div>
+    </li>
+    `)
+    setClickListener(getElement(`todo-completed-${indx}`), todoCompleted);
+    setClickListener(getElement(`todo-${indx}`),openTodo);
+  });
+}
+
 function saveTodo(){
   const title = getElement('new-todo-title');
   const description = getElement('new-todo-description');
   const date = getElement('new-todo-date');
-  //const radioGroup = getElement('new-todo-radio');
-  // const radios  = radioGroup.elements.todo_priority;
   const priority = document.querySelector('input[name="todo-priority"]:checked').id.replace(/priority-/g, '');
-  console.log(`This will be saved: 
-               Title: ${title.value}
-               Description: ${description.value}
-               Date: ${date.value}
-               Priority: ${priority}`);
-  //const titleNode = getElement('title-project');
+  if (title.value != ""){
+    let todo = new Todo(title.value, description.value, date.value, priority);
+    const indx = getElement('desc-project').lastChild.innerHTML;
+    projects[indx].todos.push(todo);
+    openNotification(`To do  <strong>'${title.value}'</strong> was saved succefully`);
+    cleanTodosForm();
+    renderTodos();
+  }else{
+    openNotification('To do <strong>title</strong> can\'t be blank', 'is-warning');
+  }
 }
 
 export function addListenerToToDos() {
