@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+  <title>Todo List</title>
+</head>
+
+<body>
+  <div class="main is-widescren is-fullhd window">
+    <div class="projects-container header">
+      <div class="burger-container">
+        <div id="burger">
+          <div class="bar topBar"></div>
+          <div class="bar btmBar"></div>
+        </div>
+      </div>
+      <div class="logo-name">
+        <h1>To-Do-It</h1>
+      </div>
+      <ul class="menu">
+        <li class="menu-item">
+          <div class="single-projects-list">
+            <ul id="projects-list">
+            </ul>
+          </div>
+        </li>
+        <li class="menu-item">
+          <button class="button is-dark is-fullwidth" id="add-project">Add</button>
+        </li>
+        <li class="menu-item">
+          <div class="hide" id="form-hide">
+            <div class="has-background-white-ter has-text-grey-dark" id="project-save">
+              <div class="close-form">
+                <div>
+                  <button class="delete" id="delete-form"></button>
+                </div>
+              </div>
+              <label>Name</label>
+              <input id="new-project-name">
+              <label>Description</label>
+              <input id="new-project-description">
+              <div class="submit-btn">
+                <button class="button is-primary is-light is-small" id="button-save-project"><strong>Save</strong></button>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="menu-item"></li>
+      </ul>
+    </div>
+    <div class="todo-container">
+      <div class="notification is-success hide" id="notification">
+        <button class="delete"></button>
+        <span id="text-notification"></span>
+      </div>
+      <h1 class="title" id="title-project"></h1>
+      <h2 class="subtitle" id="desc-project"></h2>
+      <div class="project-opt">
+        <button class="button is-danger is-light is-rounded" id="delete-project">Delete Project</button>
+        <button class="button is-warning is-light is-rounded" id="edit-project">Edit Project</button>
+        <button class="button is-success is-light is-rounded" id="add-todo">Add To-Do</button>
+      </div>
+      <div class="hide" id="todo-form">
+        <div class="close-form">
+          <div>
+            <button class="delete" id="close-todo-form"></button>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label is-small" for="new-todo-title">Title</label>
+          <div class="control">
+            <input class="input is-small" id="new-todo-title">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label is-small" for="new-todo-description">Description</label>
+          <div class="controls">
+            <input class="input is-small" id="new-todo-description">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label is-small" for="new-todo-date">Date</label>
+          <div class="controls">
+            <input class="input is-small" type="date" id="new-todo-date">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label is-small" for="new-todo-priotity">Priority</label>
+          <div class="controls is-small" id="new-todo-radio">
+            <input class="is-small" type="radio" name="todo-priority" id="priority-low" checked>
+            <label class="is-small" for="priority-low">Low</label>
+            <input class="is-small" type="radio" name="todo-priority" id="priority-medium">
+            <label class="is-small" for="priority-medium">Medium</label>
+            <input class="is-small" type="radio" name="todo-priority" id="priority-high">
+            <label class="is-small" for="priority-high">High</label>
+          </div>
+        </div>
+
+        <div class="submit-btn">
+          <button class="button is-primary is-light is-small" id="button-save-todo"><strong>Save</strong></button>
+        </div>
+      </div>
+      <ul class="todo-list" id="list-of-todos">
+
+      </ul>
+      <div class="todo-description hide" id="single-todo-container">
+        <h3 id="single-todo-title">To - Do</h3>
+        <p id="single-todo-description">A Description for the to - do</p>
+        <p id="single-todo-date"><span>Due Date</span></p>
+        <p><strong id="single-todo-priority">Priority</strong></p>
+        <p id="single-todo-complete">Completed</p>
+      </div>
+    </div>
+
+  </div>
+  <script type="text/javascript" src="./index.js"></script>
+  <script type="text/javascript" src="./main.js"></script>
+</body>
+
+</html>
