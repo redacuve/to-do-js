@@ -50,18 +50,22 @@
 
 ## About The Project
 
-This is a little web app where you can add a list of to-do things over a project, also you can check complete every task you have completed.
+This is a web app where you can add a list of To-Dos for a given project and mark as "complete" every task that you have completed.
 
-It is RESTFUL because you can create, read, update, or delete the list of to-do or projects.
+You can create, read, update, or delete the list of To-Dos/projects.
 
-With To-Do app you can check if a task is done or if need to work with them. everything is simpler.
+With To-Do app, you can check if a task is done or if you need to work on it, so everything is simpler.
 
-Don't worry about lose your to-dos because it are stored in your machine.
+Don't worry about losing your To-Dos, because they are stored in your machine.
 
 Feel free to use and recommend this app.
 
-For more details about this project and it's requeriments go to <a href="https://www.theodinproject.com/courses/javascript/lessons/todo-list"> The Odin Project</a>
+For more details about this project and its requeriments visit <a href="https://www.theodinproject.com/courses/javascript/lessons/todo-list"> The Odin Project</a>
 
+
+<p align="center">
+  <img src="todos.gif" width="450">
+</p>
 
 ### Built With
 
