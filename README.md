@@ -139,7 +139,7 @@ This project is under the <a href="https://www.gnu.org/licenses/gpl-3.0.html">GN
 
 Rey David Cuevas Vela - [@redacuve](https://twitter.com/redacuve) - redacuve@gmail.com - [linkedin.com/in/redacuve/](https://www.linkedin.com/in/redacuve/)
 
-Ricardo Valtierra - [@RicardoValtie15](https://twitter.com/RicardoValtie15) - ricardo_valtierra@outlook.com- [https://www.linkedin.com/in/ricardovaltierra/](https://www.linkedin.com/in/ricardovaltierra/)
+Ricardo Valtierra - [@RicardoValtie15](https://twitter.com/RicardoValtie15) - ricardo_valtierra@outlook.com - [linkedin.com/in/ricardovaltierra/](https://www.linkedin.com/in/ricardovaltierra/)
 
 Project Link: [github.com/redacuve/to-do-js](https://github.com/redacuve/to-do-js) - To Do JS Project.
 
